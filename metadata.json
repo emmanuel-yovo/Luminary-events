@@ -1,0 +1,7 @@
+{
+  "name": "Luminary Events",
+  "description": "Plateforme tout-en-un pour la gestion d'événements, billetterie et actualités.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

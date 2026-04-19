@@ -1,0 +1,192 @@
+{
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "news": "News",
+    "profile": "Profile"
+  },
+  "login": {
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "name": "Name",
+    "email": "Username or Email",
+    "password": "Password",
+    "stay_signed_in": "Stay signed in",
+    "google_login": "Or continue with Google",
+    "forgot_password": "Forgot Password?",
+    "back_home": "BACK TO HOME",
+    "loading": "LOADING..."
+  },
+  "auth": {
+    "forgot": {
+      "title": "Forgot Password",
+      "desc": "Enter your email to receive a reset link.",
+      "sent_desc": "If an account exists for this email, a reset link has been generated.",
+      "button": "Send Link",
+      "success": "Email sent! Check your server console.",
+      "error": "Error during request.",
+      "conn_error": "Connection error.",
+      "back_login": "Back to login"
+    },
+    "reset": {
+      "title": "New Password",
+      "desc": "Choose a strong password to protect your account.",
+      "success_title": "Done!",
+      "success_desc": "Your password has been updated successfully.",
+      "button": "Update Password",
+      "mismatch": "Passwords do not match.",
+      "success": "Password reset successfully!",
+      "error": "Invalid or expired link.",
+      "conn_error": "Connection error."
+    }
+  },
+  "home": {
+    "hero_tag": "Next-Gen Events",
+    "hero_title_1": "CREATE",
+    "hero_title_2": "UNIQUE",
+    "hero_title_3": "MEMORIES.",
+    "hero_desc": "Discover a new dimension of events. Secure, intelligent and designed for those who demand excellence.",
+    "buttons": {
+      "explore": "Explore events",
+      "create": "Create your own"
+    },
+    "concierge": {
+      "title": "VIP Concierge",
+      "question": "How are you feeling today?",
+      "placeholder": "Ex: I need to relax, I want to learn, crazy night out...",
+      "loading": "Analyse...",
+      "discover": "Discover"
+    },
+    "featured": "Featured",
+    "recommended": "Recommended",
+    "view_all": "View all",
+    "cta_title": "Ready to shine?",
+    "cta_desc": "Join thousands of organizers and launch your next event in minutes.",
+    "cta_button": "Get started now"
+  },
+  "explore": {
+    "title": "Explore events",
+    "subtitle": "Find your next memorable experience.",
+    "search_placeholder": "Search by title, city, keyword...",
+    "all_categories": "All",
+    "filters": {
+      "price_all": "💶 All prices",
+      "price_free": "🎉 Free only",
+      "price_premium": "💎 Premium events",
+      "date_all": "📅 All dates",
+      "date_month": "📌 This month",
+      "date_later": "🚀 Later"
+    },
+    "results_found": "{{count}} events found",
+    "result_found": "{{count}} event found",
+    "empty": {
+      "title": "No results found",
+      "desc": "Try adjusting your filters or changing your search.",
+      "reset": "Reset filters"
+    },
+    "view_grid": "Grid View",
+    "view_list": "List View",
+    "free": "Free",
+    "currency": "Euros"
+  },
+  "eventDetail": {
+    "not_found": "Event not found",
+    "browse_events": "Browse events",
+    "back": "Back",
+    "about": "About the event",
+    "location": "Location",
+    "open_maps": "Open in Maps",
+    "map_title": "Event Map",
+    "organizer": "Organizer",
+    "contact": "Contact",
+    "ticketing": "Ticketing",
+    "from": "Starting from",
+    "free": "Free",
+    "available": "AVAILABLE",
+    "book": "Book now",
+    "secure_payment": "Secure Payment",
+    "add_to_calendar": "Add to calendar"
+  },
+  "profile": {
+    "not_logged_tag": "Personal Space",
+    "not_logged_desc": "Sign in to access your tickets and manage your events.",
+    "login_button": "Sign in",
+    "logout": "Logout",
+    "new_event": "New Event",
+    "my_tickets": "My Tickets",
+    "no_tickets": "You don't have any tickets yet.",
+    "discover_events": "Discover events",
+    "organizer_dashboard": "Organizer Dashboard",
+    "confirmed_pass": "Confirmed Pass",
+    "wallet": "To Wallet",
+    "details": "Details",
+    "member": "Member",
+    "admin": "Administrator",
+    "organizer": "Organizer"
+  },
+  "createEvent": {
+    "restricted_title": "Restricted Access",
+    "restricted_desc": "You must be a verified organizer to create events on Luminary.",
+    "back": "Back",
+    "login": "Login",
+    "title": "Boost your <span class=\"text-gradient\">vision</span>",
+    "subtitle": "Luminary gives you the tools to create unforgettable experiences.",
+    "publish": "Publish event"
+  },
+  "admin": {
+    "restricted_title": "Access Denied",
+    "restricted_desc": "This area is restricted to system administration.",
+    "title": "Command Post",
+    "subtitle": "Global control & platform moderation.",
+    "tabs": {
+      "overview": "Overview",
+      "users": "Users",
+      "events": "Events"
+    },
+    "stats": {
+      "users": "Users",
+      "events": "Events",
+      "tickets_sold": "Tickets Sold",
+      "revenue": "Global Revenue"
+    },
+    "table": {
+      "user": "User",
+      "role": "Role",
+      "actions": "Actions"
+    },
+    "users": {
+        "search_placeholder": "Search name or email...",
+        "tickets_info": "Tickets owned",
+        "details": "Account details"
+    },
+    "events": {
+        "search_placeholder": "Search by title or organizer...",
+        "ticket_breakdown": "Sales breakdown",
+        "details": "Event details"
+    },
+    "filter": {
+        "all": "All"
+    },
+    "actions": {
+      "promote": "Promote",
+      "demote": "Demote",
+      "ban": "Ban",
+      "feature": "Feature",
+      "delete": "Permanently Delete"
+    },
+    "event_item": {
+      "by": "By",
+      "tickets": "Tickets",
+      "income": "Income"
+    },
+    "alerts": {
+      "ban_confirm": "Ban this user and all their data?",
+      "banned": "User banned.",
+      "role_updated": "Role updated to {{role}}",
+      "delete_confirm": "Permanently delete this event?",
+      "deleted": "Event deleted.",
+      "conn_error": "Connection error.",
+      "error": "Error!"
+    }
+  }
+}

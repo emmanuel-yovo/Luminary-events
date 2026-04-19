@@ -1,0 +1,192 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "explore": "Explorer",
+    "news": "Infos",
+    "profile": "Profil"
+  },
+  "login": {
+    "signin": "Se connecter",
+    "signup": "S'inscrire",
+    "name": "Nom",
+    "email": "Email ou Nom d'utilisateur",
+    "password": "Mot de passe",
+    "stay_signed_in": "Rester connecté",
+    "google_login": "Ou continuer avec Google",
+    "forgot_password": "Mot de passe oublié ?",
+    "back_home": "RETOUR À L'ACCUEIL",
+    "loading": "CHARGEMENT..."
+  },
+  "auth": {
+    "forgot": {
+      "title": "Mot de passe oublié",
+      "desc": "Entrez votre email pour recevoir un lien de réinitialisation.",
+      "sent_desc": "Si un compte existe pour cet email, un lien de réinitialisation a été généré.",
+      "button": "Envoyer le lien",
+      "success": "Email envoyé ! Vérifiez votre console serveur.",
+      "error": "Erreur lors de la demande.",
+      "conn_error": "Erreur de connexion.",
+      "back_login": "Retour à la connexion"
+    },
+    "reset": {
+      "title": "Nouveau mot de passe",
+      "desc": "Choisissez un mot de passe fort pour protéger votre compte.",
+      "success_title": "C'est fait !",
+      "success_desc": "Votre mot de passe a été mis à jour avec succès.",
+      "button": "Mettre à jour",
+      "mismatch": "Les mots de passe ne correspondent pas.",
+      "success": "Mot de passe réinitialisé !",
+      "error": "Lien invalide ou expiré.",
+      "conn_error": "Erreur de connexion."
+    }
+  },
+  "home": {
+    "hero_tag": "Événements Next-Gen",
+    "hero_title_1": "CRÉEZ DES",
+    "hero_title_2": "SOUVENIRS",
+    "hero_title_3": "UNIQUES.",
+    "hero_desc": "Découvrez une nouvelle dimension de l'événementiel. Sécurisé, intelligent et conçu pour ceux qui exigent l'excellence.",
+    "buttons": {
+      "explore": "Explorer les événements",
+      "create": "Créer le vôtre"
+    },
+    "concierge": {
+      "title": "Conciergerie VIP",
+      "question": "Comment vous sentez-vous aujourd'hui ?",
+      "placeholder": "Ex: J'ai besoin de me détendre, j'ai envie d'apprendre, soirée de folie...",
+      "loading": "Analyse...",
+      "discover": "Découvrir"
+    },
+    "featured": "À la une",
+    "recommended": "Recommandé",
+    "view_all": "Voir tout",
+    "cta_title": "Prêt à briller ?",
+    "cta_desc": "Rejoignez des milliers d'organisateurs et lancez votre prochain événement en quelques minutes.",
+    "cta_button": "Commencer maintenant"
+  },
+  "explore": {
+    "title": "Explorer les événements",
+    "subtitle": "Trouvez votre prochaine expérience mémorable.",
+    "search_placeholder": "Rechercher par titre, ville, mot-clé...",
+    "all_categories": "Tous",
+    "filters": {
+      "price_all": "💶 Tous les prix",
+      "price_free": "🎉 Gratuit uniquement",
+      "price_premium": "💎 Événements Premium",
+      "date_all": "📅 Toutes les dates",
+      "date_month": "📌 Ce mois-ci",
+      "date_later": "🚀 Plus tard"
+    },
+    "results_found": "{{count}} événements trouvés",
+    "result_found": "{{count}} événement trouvé",
+    "empty": {
+      "title": "Aucun résultat trouvé",
+      "desc": "Essayez d'ajuster vos filtres ou de modifier votre recherche.",
+      "reset": "Réinitialiser les filtres"
+    },
+    "view_grid": "Vue Grille",
+    "view_list": "Vue Liste",
+    "free": "Gratuit",
+    "currency": "Euros"
+  },
+  "eventDetail": {
+    "not_found": "Événement introuvable",
+    "browse_events": "Parcourir les événements",
+    "back": "Retour",
+    "about": "À propos de l'événement",
+    "location": "Localisation",
+    "open_maps": "Ouvrir dans Maps",
+    "map_title": "Carte de l'événement",
+    "organizer": "Organisateur",
+    "contact": "Contacter",
+    "ticketing": "Billetterie",
+    "from": "À partir de",
+    "free": "Gratuit",
+    "available": "DISPONIBLES",
+    "book": "Réserver",
+    "secure_payment": "Paiement Sécurisé",
+    "add_to_calendar": "Ajouter à l'agenda"
+  },
+  "profile": {
+    "not_logged_tag": "Espace Personnel",
+    "not_logged_desc": "Connectez-vous pour accéder à vos billets et gérer vos événements.",
+    "login_button": "Se connecter",
+    "logout": "Déconnexion",
+    "new_event": "Nouvel Événement",
+    "my_tickets": "Mes Billets",
+    "no_tickets": "Vous n'avez pas encore de billets.",
+    "discover_events": "Découvrir des événements",
+    "organizer_dashboard": "Dashboard Organisateur",
+    "confirmed_pass": "Pass Confirmé",
+    "wallet": "Au Wallet",
+    "details": "Détails",
+    "member": "Membre",
+    "admin": "Administrateur",
+    "organizer": "Organisateur"
+  },
+  "createEvent": {
+    "restricted_title": "Accès Restreint",
+    "restricted_desc": "Vous devez être un organisateur vérifié pour créer des événements sur Luminary.",
+    "back": "Retour",
+    "login": "Connexion",
+    "title": "Propulsez votre <span class=\"text-gradient\">vision</span>",
+    "subtitle": "Luminary vous donne les outils pour créer des expériences inoubliables.",
+    "publish": "Publier l'événement"
+  },
+  "admin": {
+    "restricted_title": "Accès Interdit",
+    "restricted_desc": "Cette zone est réservée à l'administration système.",
+    "title": "Poste de Commandement",
+    "subtitle": "Contrôle global & Modération de la plateforme.",
+    "tabs": {
+      "overview": "Vue Générale",
+      "users": "Utilisateurs",
+      "events": "Événements"
+    },
+    "stats": {
+      "users": "Utilisateurs",
+      "events": "Événements",
+      "tickets_sold": "Billets Vendus",
+      "revenue": "Revenus Globaux"
+    },
+    "table": {
+      "user": "Utilisateur",
+      "role": "Rôle",
+      "actions": "Actions"
+    },
+    "users": {
+        "search_placeholder": "Rechercher un nom ou un email...",
+        "tickets_info": "Billets possédés",
+        "details": "Détails du compte"
+    },
+    "events": {
+        "search_placeholder": "Rechercher par titre ou organisateur...",
+        "ticket_breakdown": "Répartition des ventes",
+        "details": "Détails de l'événement"
+    },
+    "filter": {
+        "all": "Tout"
+    },
+    "actions": {
+      "promote": "Promouvoir",
+      "demote": "Rétrograder",
+      "ban": "Bannir",
+      "feature": "Mettre en Vedette",
+      "delete": "Supprimer Définitivement"
+    },
+    "event_item": {
+      "by": "Par",
+      "tickets": "Billets",
+      "income": "Revenus"
+    },
+    "alerts": {
+      "ban_confirm": "Bannir cet utilisateur et toutes ses données ?",
+      "banned": "Utilisateur banni.",
+      "role_updated": "Rôle mis à jour en {{role}}",
+      "delete_confirm": "Supprimer définitivement cet événement ?",
+      "deleted": "Événement supprimé.",
+      "conn_error": "Erreur de connexion.",
+      "error": "Erreur !"
+    }
+  }
+}
