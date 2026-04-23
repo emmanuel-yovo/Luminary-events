@@ -33,3 +33,7 @@ sessions.db
 *.njsproj
 *.sln
 *.sw?
+
+# Uploads (use Cloudinary in production)
+uploads/*
+!uploads/.gitkeep

@@ -143,7 +143,7 @@ export const Home: React.FC<HomeProps> = ({ events, user, onShowLogin, userCurre
         <div className="flex justify-between items-end mb-10">
           <div>
             <h2 className="text-3xl font-black text-[var(--text-main)]">{t('home.featured')}</h2>
-            <p className="text-sm text-[var(--text-muted)] mt-1">Les événements les plus attendus.</p>
+            <p className="text-sm text-[var(--text-muted)] mt-1">{t('home.featured_desc')}</p>
           </div>
           <Button onClick={() => navigate('/explore')} variant="ghost" className="text-xs uppercase tracking-widest text-indigo-400">{t('home.view_all')}</Button>
         </div>

@@ -14,7 +14,7 @@ export const Admin: React.FC<AdminProps> = ({ user, apiBase }) => {
   const [stats, setStats] = useState<any>(null);
   const [users, setUsers] = useState<any[]>([]);
   const [events, setEvents] = useState<any[]>([]);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
@@ -101,7 +101,7 @@ export const Admin: React.FC<AdminProps> = ({ user, apiBase }) => {
     try {
       const res = await fetch(`${apiBase}/api/promotions/${id}/approve`, { method: 'PUT', credentials: 'include' });
       if (res.ok) {
-        toast.success('Demande approuvée !');
+        toast.success(t('admin.requests.approved_toast'));
         fetchAdminData();
       }
     } catch { toast.error(t('admin.alerts.error')); }
@@ -111,7 +111,7 @@ export const Admin: React.FC<AdminProps> = ({ user, apiBase }) => {
     try {
       const res = await fetch(`${apiBase}/api/promotions/${id}/reject`, { method: 'PUT', credentials: 'include' });
       if (res.ok) {
-        toast.success('Demande refusée.');
+        toast.success(t('admin.requests.rejected_toast'));
         fetchAdminData();
       }
     } catch { toast.error(t('admin.alerts.error')); }
@@ -160,7 +160,7 @@ export const Admin: React.FC<AdminProps> = ({ user, apiBase }) => {
               activeTab === tab ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-hover)]'
             }`}
           >
-            {tab === 'requests' ? 'Demandes' : tab === 'audit' ? 'Audit' : t(`admin.tabs.${tab}`)}
+            {t(`admin.tabs.${tab}`)}
             {tab === 'requests' && promotionRequests.filter(r => r.status === 'pending').length > 0 && (
               <span className="absolute -top-1 -right-1 w-5 h-5 bg-rose-500 text-white text-[9px] font-black rounded-full flex items-center justify-center">
                 {promotionRequests.filter(r => r.status === 'pending').length}
@@ -371,7 +371,7 @@ export const Admin: React.FC<AdminProps> = ({ user, apiBase }) => {
                                 categoryFilter === cat ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'bg-[var(--bg-card)] text-[var(--text-muted)] hover:bg-[var(--bg-hover)] border border-[var(--border-glass)]'
                             }`}
                         >
-                            {cat === 'all' ? t('explore.all_categories') : cat}
+                            {cat === 'all' ? t('explore.all_categories') : t(`categories.${cat}`, { defaultValue: cat })}
                         </button>
                     ))}
                 </div>
@@ -554,7 +554,7 @@ export const Admin: React.FC<AdminProps> = ({ user, apiBase }) => {
                       req.status === 'approved' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' :
                       'bg-rose-500/10 text-rose-400 border border-rose-500/20'
                     }`}>
-                      {req.status === 'pending' ? 'En attente' : req.status === 'approved' ? 'Approuvée' : 'Refusée'}
+                      {req.status === 'pending' ? t('admin.requests.pending') : req.status === 'approved' ? t('admin.requests.approved') : t('admin.requests.rejected')}
                     </span>
                     {req.status === 'pending' && (
                       <div className="flex gap-2">
@@ -576,7 +576,9 @@ export const Admin: React.FC<AdminProps> = ({ user, apiBase }) => {
                     )}
                   </div>
                 </div>
-                <p className="text-[10px] text-[var(--text-muted)] mt-3 font-bold">Demandé le {new Date(req.requestDate).toLocaleDateString('fr-FR')}</p>
+                <p className="text-[10px] text-[var(--text-muted)] mt-3 font-bold">
+                  {t('admin.requests.requested_on')} {new Date(req.requestDate).toLocaleDateString(i18n.language === 'fr' ? 'fr-FR' : 'en-US')}
+                </p>
               </div>
             ))
           )}
@@ -596,7 +598,7 @@ export const Admin: React.FC<AdminProps> = ({ user, apiBase }) => {
                   auditFilter === action ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'bg-[var(--bg-card)] text-[var(--text-muted)] hover:bg-[var(--bg-hover)] border border-[var(--border-glass)]'
                 }`}
               >
-                {action === 'all' ? 'Tout' : action.replace(':', ' / ')}
+                {action === 'all' ? t('admin.audit.all') : action.replace(':', ' / ')}
               </button>
             ))}
           </div>

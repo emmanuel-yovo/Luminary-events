@@ -40,7 +40,8 @@ export const createEvent = (req, res) => {
     }
 
     if (req.file) {
-        image = `/uploads/${req.file.filename}`;
+        // Cloudinary returns full URL in req.file.path, disk storage uses filename
+        image = req.file.path || `/uploads/${req.file.filename}`;
     }
 
     // Server-side validation
@@ -120,7 +121,8 @@ export const updateEvent = (req, res) => {
     }
 
     if (req.file) {
-        image = `/uploads/${req.file.filename}`;
+        // Cloudinary returns full URL in req.file.path, disk storage uses filename
+        image = req.file.path || `/uploads/${req.file.filename}`;
     }
 
     const db = getDB();

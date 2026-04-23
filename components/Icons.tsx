@@ -52,7 +52,8 @@ import {
   Clock,
   AlertTriangle,
   Mail,
-  Map as MapIcon
+  Map as MapIcon,
+  Navigation
 } from 'lucide-react';
 
 interface IconProps {
@@ -115,4 +116,5 @@ export const Icons = {
   Globe: ({size=20, className=""}: IconProps) => <Globe size={size} strokeWidth={2} className={className} />,
   Heart: ({size=20, className=""}: IconProps) => <Heart size={size} strokeWidth={2} className={className} />,
   Map: ({size=20, className=""}: IconProps) => <MapIcon size={size} strokeWidth={2} className={className} />,
+  Navigation: ({size=20, className=""}: IconProps) => <Navigation size={size} strokeWidth={2} className={className} />,
 };

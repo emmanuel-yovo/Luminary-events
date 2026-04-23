@@ -3,6 +3,7 @@ import { Event } from '../types';
 import { Badge } from './UI';
 import { Icons } from './Icons';
 import { formatPrice } from '../utils/currency';
+import { useTranslation } from 'react-i18next';
 
 interface EventCardProps {
   event: Event;
@@ -13,6 +14,7 @@ interface EventCardProps {
 }
 
 export const EventCard: React.FC<EventCardProps> = ({ event, onClick, userCurrency = 'XAF', isFavorite, onToggleFavorite }) => {
+  const { t } = useTranslation();
   const minPriceCfa = event.tickets.length > 0 ? Math.min(...event.tickets.map(t => t.price)) : 0;
 
 
@@ -30,7 +32,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onClick, userCurren
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-page)] via-transparent to-transparent opacity-60"></div>
         
         <div className="absolute top-4 left-4">
-          <Badge className="shadow-xl">{event.category}</Badge>
+          <Badge className="shadow-xl">{t(`categories.${event.category}`)}</Badge>
         </div>
 
         {onToggleFavorite && (
@@ -44,7 +46,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onClick, userCurren
         
         <div className="absolute bottom-4 right-4 glass px-3 py-1.5 rounded-2xl">
           <p className="text-[10px] font-black tracking-widest text-indigo-400">
-            {minPriceCfa === 0 ? 'Gratuit' : `Dès ${formatPrice(minPriceCfa, userCurrency)}`}
+            {minPriceCfa === 0 ? t('explore.free') : `${t('eventDetail.from')} ${formatPrice(minPriceCfa, userCurrency)}`}
           </p>
         </div>
       </div>
@@ -80,7 +82,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onClick, userCurren
              <span className="text-[10px] font-bold text-[var(--text-muted)]">{event.organizer}</span>
            </div>
            <div className="flex items-center gap-1 text-[10px] font-black text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-             <span>VOIR DÉTAILS</span>
+             <span>{t('admin.actions.details', { defaultValue: 'VOIR DÉTAILS' })}</span>
              <Icons.ArrowRight size={14} />
            </div>
         </div>

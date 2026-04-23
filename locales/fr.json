@@ -3,7 +3,9 @@
     "home": "Accueil",
     "explore": "Explorer",
     "news": "Infos",
-    "profile": "Profil"
+    "profile": "Profil",
+    "cgu": "Soutien / CGU",
+    "create_title": "Créer"
   },
   "login": {
     "signin": "Se connecter",
@@ -16,6 +18,18 @@
     "forgot_password": "Mot de passe oublié ?",
     "back_home": "RETOUR À L'ACCUEIL",
     "loading": "CHARGEMENT..."
+  },
+  "categories": {
+    "Conférence": "Conférence",
+    "Concert": "Concert",
+    "Salon": "Salon",
+    "Mariage": "Mariage",
+    "Sport": "Sport",
+    "Atelier": "Atelier",
+    "Autre": "Autre"
+  },
+  "footer": {
+    "rights": "Tous droits réservés"
   },
   "auth": {
     "forgot": {
@@ -58,6 +72,7 @@
       "discover": "Découvrir"
     },
     "featured": "À la une",
+    "featured_desc": "Les événements les plus attendus.",
     "recommended": "Recommandé",
     "view_all": "Voir tout",
     "cta_title": "Prêt à briller ?",
@@ -105,7 +120,17 @@
     "available": "DISPONIBLES",
     "book": "Réserver",
     "secure_payment": "Paiement Sécurisé",
-    "add_to_calendar": "Ajouter à l'agenda"
+    "add_to_calendar": "Ajouter à l'agenda",
+    "reports": {
+      "contenu_inapproprie": "🚫 Contenu inapproprié",
+      "arnaque": "💸 Arnaque ou fraude",
+      "spam": "📧 Spam ou publicité",
+      "evenement_fictif": "👻 Événement fictif",
+      "discrimination": "⚠️ Discrimination",
+      "autre": "📝 Autre raison",
+      "toast_reason": "Veuillez sélectionner une raison.",
+      "conn_error": "Erreur de connexion"
+    }
   },
   "profile": {
     "not_logged_tag": "Espace Personnel",
@@ -141,7 +166,9 @@
     "tabs": {
       "overview": "Vue Générale",
       "users": "Utilisateurs",
-      "events": "Événements"
+      "events": "Événements",
+      "requests": "Demandes",
+      "audit": "Audit"
     },
     "stats": {
       "users": "Utilisateurs",
@@ -180,13 +207,95 @@
       "income": "Revenus"
     },
     "alerts": {
-      "ban_confirm": "Bannir cet utilisateur et toutes ses données ?",
-      "banned": "Utilisateur banni.",
-      "role_updated": "Rôle mis à jour en {{role}}",
-      "delete_confirm": "Supprimer définitivement cet événement ?",
-      "deleted": "Événement supprimé.",
+      "error": "Erreur !",
       "conn_error": "Erreur de connexion.",
-      "error": "Erreur !"
+      "ban_confirm": "Êtes-vous sûr de vouloir bannir cet utilisateur ?",
+      "banned": "Utilisateur banni.",
+      "role_updated": "Rôle mis à jour : {{role}}",
+      "delete_confirm": "Êtes-vous sûr de vouloir supprimer cet événement ?",
+      "deleted": "Événement supprimé."
+    },
+    "requests": {
+      "empty": "Aucune demande de promotion pour le moment.",
+      "pending": "En attente",
+      "approved": "Approuvée",
+      "rejected": "Refusée",
+      "requested_on": "Demandé le",
+      "approve": "Approuver",
+      "reject": "Refuser",
+      "approved_toast": "Demande approuvée !",
+      "rejected_toast": "Demande refusée."
+    },
+    "audit": {
+      "empty": "Aucun log d'audit pour le moment.",
+      "all": "Tout"
     }
+  },
+  "news": {
+    "title": "Lumières sur l'écosystème",
+    "subtitle": "Suivez les tendances, les conseils et les actualités de la communauté Luminary.",
+    "read_more": "Lire la suite",
+    "newsletter_title": "Restez à l'affût",
+    "newsletter_quote": "\"L'avenir appartient à ceux qui voient les opportunités avant qu'elles ne deviennent évidentes.\"",
+    "newsletter_placeholder": "Votre adresse email",
+    "subscribe": "S'abonner",
+    "article1": {
+      "title": "Les 5 tendances événementielles à suivre",
+      "excerpt": "Découvrez comment la technologie transforme l'expérience des participants...",
+      "category": "Conseils"
+    }
+  },
+  "footer": {
+    "rights": "Tous droits réservés"
+  },
+  "cgu": {
+    "legal_tag": "Document Légal",
+    "title_1": "Conditions Générales",
+    "title_2": "d'Utilisation",
+    "last_update": "Dernière mise à jour",
+    "question": "Une question ?",
+    "contact_desc": "Pour toute demande relative à vos données ou à ces conditions, contactez-nous à",
+    "buttons": {
+      "back": "Retour",
+      "home": "Accueil"
+    },
+    "sections": {
+      "s1": {
+        "title": "1. Objet de la plateforme",
+        "content": "Luminary Events est une plateforme de gestion d'événements permettant aux utilisateurs de découvrir, créer et participer à des événements. L'utilisation de nos services implique l'acceptation intégrale des présentes conditions."
+      },
+      "s2": {
+        "title": "2. Inscription et Comptes",
+        "content": "L'inscription nécessite un nom, une adresse email valide et un mot de passe. Vos mots de passe sont chiffrés (bcrypt) et ne sont jamais stockés en clair. Vous êtes responsable de la confidentialité de vos identifiants."
+      },
+      "s3": {
+        "title": "3. Modération des Événements",
+        "content": "Tout événement soumis par un organisateur est soumis à validation par notre équipe de modération avant publication. Les contenus haineux, illégaux ou trompeurs seront rejetés sans préavis."
+      },
+      "s4": {
+        "title": "4. Billetterie et Remboursements",
+        "content": "Les billets achetés sont nominatifs et non transférables. En cas d'annulation par l'organisateur, un remboursement intégral sera effectué sous 14 jours. Les demandes de remboursement volontaires sont acceptées jusqu'à 48h avant l'événement."
+      },
+      "s5": {
+        "title": "5. Protection des Données (RGPD)",
+        "content": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles. Vous pouvez supprimer définitivement votre compte depuis votre profil. Nous ne partageons vos données avec aucun tiers."
+      },
+      "s6": {
+        "title": "6. Responsabilités",
+        "content": "Luminary Events agit en tant qu'intermédiaire technique. Nous ne sommes pas responsables du contenu des événements publiés par les organisateurs, ni des incidents survenant lors de ces événements."
+      },
+      "s7": {
+        "title": "7. Propriété Intellectuelle",
+        "content": "L'ensemble des éléments visuels, textuels et techniques de la plateforme sont protégés par le droit d'auteur. Toute reproduction non autorisée est interdite."
+      }
+    }
+  },
+  "scanner": {
+    "title": "Scanner de Billet",
+    "event_prefix": "Événement",
+    "instruction": "Placez le QR code au centre de la zone de scan",
+    "verifying": "Vérification en cours...",
+    "success_ticket": "Billet de",
+    "network_error": "Erreur réseau lors de la validation."
   }
 }

@@ -11,13 +11,13 @@ import { formatPrice } from '../utils/currency';
 
 const API_BASE = 'http://localhost:3000';
 
-const REPORT_REASONS = [
-  { value: 'contenu_inapproprie', label: '🚫 Contenu inapproprié' },
-  { value: 'arnaque', label: '💸 Arnaque ou fraude' },
-  { value: 'spam', label: '📧 Spam ou publicité' },
-  { value: 'evenement_fictif', label: '👻 Événement fictif' },
-  { value: 'discrimination', label: '⚠️ Discrimination' },
-  { value: 'autre', label: '📝 Autre raison' },
+const getReportReasons = (t: any) => [
+  { value: 'contenu_inapproprie', label: t('eventDetail.reports.contenu_inapproprie') },
+  { value: 'arnaque', label: t('eventDetail.reports.arnaque') },
+  { value: 'spam', label: t('eventDetail.reports.spam') },
+  { value: 'evenement_fictif', label: t('eventDetail.reports.evenement_fictif') },
+  { value: 'discrimination', label: t('eventDetail.reports.discrimination') },
+  { value: 'autre', label: t('eventDetail.reports.autre') },
 ];
 
 interface EventDetailProps {
@@ -66,7 +66,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ events, onBuyTicket, u
   const minPrice = event.tickets.length > 0 ? Math.min(...event.tickets.map(t => t.price)) : 0;
 
   const handleReport = async () => {
-    if (!reportReason) { toast.error('Veuillez sélectionner une raison.'); return; }
+    if (!reportReason) { toast.error(t('eventDetail.reports.toast_reason')); return; }
     setIsReporting(true);
     try {
       const res = await fetch(`${API_BASE}/api/reports`, {
@@ -84,9 +84,11 @@ export const EventDetail: React.FC<EventDetailProps> = ({ events, onBuyTicket, u
       } else {
         toast.error(data.error);
       }
-    } catch { toast.error('Erreur de connexion'); }
+    } catch { toast.error(t('eventDetail.reports.conn_error')); }
     finally { setIsReporting(false); }
   };
+
+  const reportReasons = getReportReasons(t);
 
   return (
     <div className="max-w-6xl mx-auto space-y-12 animate-fade-in pb-24">
@@ -99,7 +101,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ events, onBuyTicket, u
         <img src={event.image} alt={event.title} className="w-full h-full object-cover scale-105" />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-page)] via-[var(--bg-page)]/40 to-transparent flex items-end p-8 md:p-12">
           <div className="space-y-4 max-w-2xl">
-            <Badge className="shadow-2xl">{event.category}</Badge>
+            <Badge className="shadow-2xl">{t(`categories.${event.category}`)}</Badge>
             <h1 className="text-4xl md:text-6xl font-black text-[var(--text-main)] leading-tight tracking-tighter">
               {event.title}
             </h1>
@@ -236,7 +238,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ events, onBuyTicket, u
             onClick={() => setShowReportModal(true)}
             className="text-[10px] text-[var(--text-muted)] hover:text-rose-400 font-bold uppercase tracking-widest transition-colors flex items-center gap-2 mx-auto"
           >
-            <Icons.AlertTriangle size={14} /> Signaler cet événement
+            <Icons.AlertTriangle size={14} /> {t('eventDetail.report_btn', { defaultValue: 'Signaler cet événement' })}
           </button>
         </div>
       )}
@@ -249,12 +251,12 @@ export const EventDetail: React.FC<EventDetailProps> = ({ events, onBuyTicket, u
               <div className="w-14 h-14 bg-rose-500/10 rounded-2xl flex items-center justify-center mx-auto">
                 <Icons.AlertTriangle size={28} className="text-rose-400" />
               </div>
-              <h3 className="text-xl font-black text-[var(--text-main)]">Signaler l'événement</h3>
-              <p className="text-xs text-[var(--text-muted)] font-medium">Aidez-nous à maintenir la qualité de la plateforme.</p>
+              <h3 className="text-xl font-black text-[var(--text-main)]">{t('eventDetail.reports.modal_title', { defaultValue: "Signaler l'événement" })}</h3>
+              <p className="text-xs text-[var(--text-muted)] font-medium">{t('eventDetail.reports.modal_desc', { defaultValue: 'Aidez-nous à maintenir la qualité de la plateforme.' })}</p>
             </div>
 
             <div className="space-y-3">
-              {REPORT_REASONS.map(r => (
+              {reportReasons.map(r => (
                 <button
                   key={r.value}
                   onClick={() => setReportReason(r.value)}

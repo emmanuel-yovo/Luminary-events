@@ -17,10 +17,16 @@ import dashboardRoutes from './server/routes/dashboardRoutes.js';
 import adminRoutes from './server/routes/adminRoutes.js';
 import promotionRoutes from './server/routes/promotionRoutes.js';
 import reportRoutes from './server/routes/reportRoutes.js';
+import { startCleanupJob } from './server/utils/cleanupJob.js';
 
 dotenv.config();
 
-// Initialisation de la BDD
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+
+// ─── DATABASE INITIALIZATION ───
 const db = initDB();
 
 db.serialize(() => {
@@ -130,33 +136,41 @@ db.serialize(() => {
     db.run(`ALTER TABLE users ADD COLUMN acceptedCguDate TEXT`, (err) => { /* Ignore duplicate */ });
     
     // Inject First Super-Admin
-    const adminPassword = bcrypt.hashSync('admin123', 10);
+    const adminPassword = bcrypt.hashSync(process.env.ADMIN_PASSWORD || 'admin123', 10);
     db.run(`INSERT OR IGNORE INTO users (id, name, email, password, role) VALUES (?, ?, ?, ?, ?)`,
-      ['admin-system-id', 'Super Admin', 'admin@luminary.com', adminPassword, 'admin']);
+      ['admin-system-id', 'Super Admin', process.env.ADMIN_EMAIL || 'admin@luminary.com', adminPassword, 'admin']);
 });
 
 const app = express();
 
 // ─── 1. HELMET: Security Headers ───
 app.use(helmet({
-    contentSecurityPolicy: false, // Disabled for dev (inline scripts from Vite)
+    contentSecurityPolicy: IS_PRODUCTION ? {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com"],
+            imgSrc: ["'self'", "data:", "https://res.cloudinary.com", "https://*.basemaps.cartocdn.com", "https://*.tile.openstreetmap.org"],
+            connectSrc: ["'self'"],
+        }
+    } : false,
     crossOriginEmbedderPolicy: false
 }));
 
-// ─── 2. STRICT CORS ───
-const ALLOWED_ORIGINS = [
-    process.env.FRONTEND_URL || 'http://localhost:5173',
-    'http://localhost:5174',
-    'http://localhost:5175'
-];
+// ─── 2. CORS ───
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || process.env.FRONTEND_URL || 'http://localhost:5173')
+    .split(',')
+    .map(s => s.trim());
 
+// In production when serving from the same origin, allow all same-origin requests
 app.use(cors({ 
     origin: (origin, callback) => {
-        // Allow requests with no origin (mobile apps, curl, etc.)
+        // Allow requests with no origin (same-origin in production, mobile apps, curl)
         if (!origin || ALLOWED_ORIGINS.includes(origin)) {
             callback(null, true);
         } else {
-            callback(new Error('Bloqué par la politique CORS'));
+            callback(new Error('Blocked by CORS policy'));
         }
     },
     credentials: true 
@@ -164,17 +178,17 @@ app.use(cors({
 
 // ─── 3. RATE LIMITING ───
 const apiLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 200, // max 200 requests per IP per 15 min
+    windowMs: 15 * 60 * 1000,
+    max: IS_PRODUCTION ? 100 : 500,
     standardHeaders: true,
     legacyHeaders: false,
-    message: { error: 'Trop de requêtes, veuillez réessayer dans quelques minutes.' }
+    message: { error: 'Too many requests, please try again later.' }
 });
 
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 20, // max 20 auth attempts per 15 min (anti brute-force)
-    message: { error: 'Trop de tentatives de connexion. Réessayez dans 15 minutes.' }
+    max: IS_PRODUCTION ? 10 : 50,
+    message: { error: 'Too many login attempts. Please try again in 15 minutes.' }
 });
 
 app.use('/api', apiLimiter);
@@ -184,31 +198,37 @@ app.use('/auth/register', authLimiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Serve uploaded files (local dev fallback)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// ─── 4. PERSISTENT SESSION STORE (SQLite) ───
+// ─── 4. SESSION STORE ───
 const SQLiteStore = connectSqlite3(session);
 
-app.use(session({
+const sessionConfig = {
     store: new SQLiteStore({ db: 'sessions.db', dir: './' }),
-    secret: process.env.SESSION_SECRET || 'dev_session_secret',
+    secret: process.env.SESSION_SECRET || 'dev_session_secret_CHANGE_ME',
     resave: false,
     saveUninitialized: false,
     cookie: { 
-        secure: process.env.NODE_ENV === 'production',
+        secure: IS_PRODUCTION,
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours
-        sameSite: 'lax'
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        sameSite: IS_PRODUCTION ? 'strict' : 'lax'
     }
-}));
+};
+
+// Trust proxy in production (required for secure cookies behind reverse proxy)
+if (IS_PRODUCTION) {
+    app.set('trust proxy', 1);
+}
+
+app.use(session(sessionConfig));
 
 const passport = configurePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Enregistrement des Routes
+// ─── 5. API ROUTES ───
 app.use('/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/dashboard', dashboardRoutes);
@@ -216,11 +236,46 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/promotions', promotionRoutes);
 app.use('/api/reports', reportRoutes);
 
-app.get('/', (req, res) => res.send('Luminary Events MVC Backend is running smooth!'));
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+    res.json({ 
+        status: 'ok', 
+        env: IS_PRODUCTION ? 'production' : 'development',
+        timestamp: new Date().toISOString()
+    });
+});
+
+// ─── 6. SERVE REACT APP IN PRODUCTION ───
+if (IS_PRODUCTION) {
+    const distPath = path.join(__dirname, 'dist');
+    
+    // Serve static files from the Vite build
+    app.use(express.static(distPath));
+    
+    // SPA fallback: any non-API route returns index.html
+    app.get('*', (req, res) => {
+        // Don't intercept API or auth routes
+        if (req.path.startsWith('/api') || req.path.startsWith('/auth') || req.path.startsWith('/uploads')) {
+            return res.status(404).json({ error: 'Not found' });
+        }
+        res.sendFile(path.join(distPath, 'index.html'));
+    });
+} else {
+    app.get('/', (req, res) => res.send('Luminary Events API is running 🚀'));
+}
+
+// ─── 7. GLOBAL ERROR HANDLER ───
+app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err.message);
+    res.status(500).json({ error: IS_PRODUCTION ? 'Internal server error' : err.message });
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`🚀 Auth/API server listening on http://localhost:${PORT}`);
+    console.log(`🚀 Luminary Events server running on port ${PORT} (${IS_PRODUCTION ? 'PRODUCTION' : 'DEVELOPMENT'})`);
+    
+    // Start automatic cleanup of expired events (7 days after end date)
+    startCleanupJob();
 });
 
 process.on('uncaughtException', (err) => {

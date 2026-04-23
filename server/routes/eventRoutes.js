@@ -2,7 +2,7 @@ import express from 'express';
 import { requireAuth, requireOrganizer } from '../middlewares/authMiddleware.js';
 import { getAllEvents, createEvent, updateEvent, deleteEvent, buyTicket, addCoOrganizer, removeCoOrganizer, toggleFavorite, scanTicket } from '../controllers/eventController.js';
 import { authorize } from '../utils/rbac.js';
-import { upload } from '../middlewares/uploadMiddleware.js';
+import { upload } from '../config/cloudinary.js';
 
 const router = express.Router();
 

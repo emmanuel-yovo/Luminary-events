@@ -68,10 +68,10 @@ function AppContent() {
   const [news, setNews] = useState<Article[]>([
     {
       id: '1',
-      title: 'Les 5 tendances événementielles à suivre',
-      excerpt: 'Découvrez comment la technologie transforme l\'expérience des participants...',
+      title: 'news.article1.title',
+      excerpt: 'news.article1.excerpt',
       content: 'Full content here...',
-      category: 'Conseils',
+      category: 'news.article1.category',
       imageUrl: 'https://picsum.photos/600/400?random=10',
       date: '12 Oct 2024',
       author: 'Sophie Martin'
@@ -95,16 +95,16 @@ function AppContent() {
   // Update Page Title
   useEffect(() => {
     const titles: Record<string, string> = {
-      '/': 'Luminary | Moments Inoubliables',
-      '/explore': 'Explorer | Luminary Events',
-      '/create': 'Créer | Luminary Events',
-      '/news': 'Infos | Luminary Events',
-      '/profile': 'Mon Profil | Luminary',
-      '/login': 'Connexion | Luminary'
+      '/': `Luminary | ${t('home.hero_title_3')}`,
+      '/explore': `${t('nav.explore')} | Luminary Events`,
+      '/create': `${t('nav.create_title') || 'Créer'} | Luminary Events`,
+      '/news': `${t('nav.news')} | Luminary Events`,
+      '/profile': `${t('nav.profile')} | Luminary Events`,
+      '/cgu': `CGU | Luminary Events`
     };
     document.title = titles[location.pathname] || 'Luminary Events';
     window.scrollTo(0, 0);
-  }, [location]);
+  }, [location.pathname, t]);
 
   const handleCreateEvent = async (eventData: any) => {
     try {
@@ -281,7 +281,7 @@ function AppContent() {
       <main className="pt-32 min-h-screen px-4 pb-24 md:pb-12">
         <Routes>
           <Route path="/" element={<Home events={events} user={user} onShowLogin={onShowLogin} userCurrency={user?.currency} onToggleFavorite={handleToggleFavorite} />} />
-          <Route path="/explore" element={<Explore events={events} user={user} userCurrency={user?.currency} onToggleFavorite={handleToggleFavorite} onShowLogin={onShowLogin} />} />
+          <Route path="/explore" element={<Explore events={events} user={user} userCurrency={user?.currency} onToggleFavorite={handleToggleFavorite} onShowLogin={onShowLogin} theme={theme} />} />
           <Route path="/event/:id" element={<EventDetail events={events} onBuyTicket={handleBuyTicket} user={user} onShowLogin={onShowLogin} userCurrency={user?.currency} onToggleFavorite={handleToggleFavorite} />} />
           <Route path="/create" element={<CreateEvent user={user} onSubmit={handleCreateEvent} onShowLogin={onShowLogin} />} />
           <Route path="/news" element={<News articles={news} user={user} onAddArticle={(a) => setNews([a, ...news])} />} />
@@ -298,11 +298,11 @@ function AppContent() {
       {/* Footer */}
       <footer className="hidden md:block text-center pb-8 pt-4">
         <div className="flex items-center justify-center gap-6 text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">
-          <Link to="/cgu" className="hover:text-indigo-400 transition-colors">Conditions Générales</Link>
+          <Link to="/cgu" className="hover:text-indigo-400 transition-colors">{t('nav.cgu') || 'Conditions Générales'}</Link>
           <span className="w-1 h-1 rounded-full bg-[var(--border-glass)]"></span>
           <span>© {new Date().getFullYear()} Luminary Events</span>
           <span className="w-1 h-1 rounded-full bg-[var(--border-glass)]"></span>
-          <span>Tous droits réservés</span>
+          <span>{t('footer.rights') || 'Tous droits réservés'}</span>
         </div>
       </footer>
 

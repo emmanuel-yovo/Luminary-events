@@ -3,7 +3,9 @@
     "home": "Home",
     "explore": "Explore",
     "news": "News",
-    "profile": "Profile"
+    "profile": "Profile",
+    "cgu": "Support / TOS",
+    "create_title": "Create"
   },
   "login": {
     "signin": "Sign In",
@@ -16,6 +18,18 @@
     "forgot_password": "Forgot Password?",
     "back_home": "BACK TO HOME",
     "loading": "LOADING..."
+  },
+  "categories": {
+    "Conférence": "Conference",
+    "Concert": "Concert",
+    "Salon": "Trade Show",
+    "Mariage": "Wedding",
+    "Sport": "Sport",
+    "Atelier": "Workshop",
+    "Autre": "Other"
+  },
+  "footer": {
+    "rights": "All rights reserved"
   },
   "auth": {
     "forgot": {
@@ -58,6 +72,7 @@
       "discover": "Discover"
     },
     "featured": "Featured",
+    "featured_desc": "The most anticipated events.",
     "recommended": "Recommended",
     "view_all": "View all",
     "cta_title": "Ready to shine?",
@@ -105,7 +120,17 @@
     "available": "AVAILABLE",
     "book": "Book now",
     "secure_payment": "Secure Payment",
-    "add_to_calendar": "Add to calendar"
+    "add_to_calendar": "Add to calendar",
+    "reports": {
+      "contenu_inapproprie": "🚫 Inappropriate Content",
+      "arnaque": "💸 Scam or Fraud",
+      "spam": "📧 Spam or Ads",
+      "evenement_fictif": "👻 Fictitious Event",
+      "discrimination": "⚠️ Discrimination",
+      "autre": "📝 Other Reason",
+      "toast_reason": "Please select a reason.",
+      "conn_error": "Connection error"
+    }
   },
   "profile": {
     "not_logged_tag": "Personal Space",
@@ -141,7 +166,9 @@
     "tabs": {
       "overview": "Overview",
       "users": "Users",
-      "events": "Events"
+      "events": "Events",
+      "requests": "Requests",
+      "audit": "Audit"
     },
     "stats": {
       "users": "Users",
@@ -187,6 +214,88 @@
       "deleted": "Event deleted.",
       "conn_error": "Connection error.",
       "error": "Error!"
+    },
+    "requests": {
+      "empty": "No promotion requests for now.",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "requested_on": "Requested on",
+      "approve": "Approve",
+      "reject": "Reject",
+      "approved_toast": "Request approved!",
+      "rejected_toast": "Request rejected."
+    },
+    "audit": {
+      "empty": "No audit logs for now.",
+      "all": "All"
     }
+  },
+  "news": {
+    "title": "Lights on the Ecosystem",
+    "subtitle": "Follow trends, tips, and news from the Luminary community.",
+    "read_more": "Read more",
+    "newsletter_title": "Stay Tuned",
+    "newsletter_quote": "\"The future belongs to those who see opportunities before they become obvious.\"",
+    "newsletter_placeholder": "Your email address",
+    "subscribe": "Subscribe",
+    "article1": {
+      "title": "Top 5 Event Trends to Watch",
+      "excerpt": "Discover how technology is transforming the attendee experience...",
+      "category": "Tips"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  },
+  "cgu": {
+    "legal_tag": "Legal Document",
+    "title_1": "Terms &",
+    "title_2": "Conditions",
+    "last_update": "Last update",
+    "question": "Any questions?",
+    "contact_desc": "For any request related to your data or these conditions, contact us at",
+    "buttons": {
+      "back": "Back",
+      "home": "Home"
+    },
+    "sections": {
+      "s1": {
+        "title": "1. Platform Objective",
+        "content": "Luminary Events is an event management platform allowing users to discover, create, and participate in events. Use of our services implies full acceptance of these terms."
+      },
+      "s2": {
+        "title": "2. Registration and Accounts",
+        "content": "Registration requires a name, a valid email address and a password. Your passwords are encrypted (bcrypt) and are never stored in plain text. You are responsible for the confidentiality of your credentials."
+      },
+      "s3": {
+        "title": "3. Event Moderation",
+        "content": "Any event submitted by an organizer is subject to validation by our moderation team before publication. Hateful, illegal or misleading content will be rejected without notice."
+      },
+      "s4": {
+        "title": "4. Ticketing and Refunds",
+        "content": "Tickets purchased are personal and non-transferable. In case of cancellation by the organizer, a full refund will be made within 14 days. Voluntary refund requests are accepted until 48 hours before the event."
+      },
+      "s5": {
+        "title": "5. Data Protection (GDPR)",
+        "content": "In accordance with GDPR, you have the right to access, rectify and delete your personal data. You can permanently delete your account from your profile. We do not share your data with any third party."
+      },
+      "s6": {
+        "title": "6. Responsibilities",
+        "content": "Luminary Events acts as a technical intermediary. We are not responsible for the content of events published by organizers, nor for incidents occurring during these events."
+      },
+      "s7": {
+        "title": "7. Intellectual Property",
+        "content": "All visual, textual and technical elements of the platform are protected by copyright. Any unauthorized reproduction is prohibited."
+      }
+    }
+  },
+  "scanner": {
+    "title": "Ticket Scanner",
+    "event_prefix": "Event",
+    "instruction": "Place the QR code in the center of the scanning area",
+    "verifying": "Verification in progress...",
+    "success_ticket": "Ticket from",
+    "network_error": "Network error during validation."
   }
 }
